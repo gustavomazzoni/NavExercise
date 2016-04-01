@@ -4,7 +4,9 @@
 function init(divId) {
 	getItemsNavigation(function(response) {
 		// Call function to create html elements for the navigation
-	    createNavigationHtml(response.items, document.getElementById(divId));
+	    var ul = createNavigationHtml(response.items);
+	    // Insert elements to the document.
+    	document.getElementById(divId).appendChild(ul);
 
 	    // add event listener click to the body element, parent of all elements in the page, 
 	    // so every element clicked will call the function to hide subitems nav
@@ -39,7 +41,7 @@ function getItemsNavigation(callback) {
 }
 
 // Create html elements in the nav with the list items received.
-function createNavigationHtml(listItems, htmlElement) {
+function createNavigationHtml(listItems) {
 	// Return if param is empty
 	if (!listItems || listItems.length == 0) return;
 
@@ -60,14 +62,14 @@ function createNavigationHtml(listItems, htmlElement) {
   	  		a.addEventListener("click", showSubitemsNav);
 
   	  		//create subitems navigation
-    		createNavigationHtml(listItems[i].items, li);
+    		var subUl = createNavigationHtml(listItems[i].items);
+    		li.appendChild(subUl);
     	}
 
     	ul.appendChild(li);
     }
     
-    // Insert elements to the document.
-    htmlElement.appendChild(ul);
+    return ul;
 }
 
 //hide subitems navigation
@@ -109,7 +111,6 @@ function uncheckbox() {
 
 // slide nav according to toggle (hamburguer)
 function slideNav() {
-	console.log('slideContent');
 	var nav = document.getElementsByClassName("bar");
 	if (nav[0].className.indexOf("slide") == -1) {
 		nav[0].className += " " + "slide";
