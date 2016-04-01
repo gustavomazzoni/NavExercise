@@ -1,0 +1,311 @@
+@import "fonts.css";
+
+body {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+body > nav {
+  z-index: 3;
+  width: 100%;
+  margin-top: 0;
+  height: 72px;
+  font: 21px/48px HUGEAvantGardeBold;
+  color: #fff;
+  background-color: #ec008c;
+  background-clip: padding-box;
+
+  overflow: hidden;
+  backface-visibility: hidden;
+  -moz-transition: all 0.6s cubic-bezier(0.7, 0.01, 0.3, 1);
+  -o-transition: all 0.6s cubic-bezier(0.7, 0.01, 0.3, 1);
+  -webkit-transition: all 0.6s cubic-bezier(0.7, 0.01, 0.3, 1);
+  transition: all 0.6s cubic-bezier(0.7, 0.01, 0.3, 1);
+}
+
+body > nav > div.header {
+  float: left;
+}
+
+/*Strip the ul of padding and list styling*/
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  width: 100%;
+}
+
+/*Create a horizontal list*/
+li {
+  display: inline-block;
+  float: left;
+}
+
+/*Style for menu links*/
+li a {
+  display: block;
+  height: 24px;
+  padding: 24px;
+  line-height: 24px;
+  color: inherit;
+}
+
+/*Hover state for top level links*/
+li:hover a {
+  background: #fff;
+  color: #ec008c;
+}
+
+/*Make dropdown links vertical*/
+li ul li {
+  display: block;
+  float: none;
+}
+
+/*Style for dropdown links*/
+li ul li a {
+  height: 48px;
+  line-height: 48px;
+  padding: 0 24px;
+  background: #fff;
+}
+
+/*Color style for dropdown links*/
+li:hover ul a {
+  color: inherit;
+}
+
+/*Padding top to the first dropdown link*/
+li ul li:first-child a {
+  padding-top: 12px;
+}
+
+/*Hide dropdown links until they are needed*/
+li ul {
+  display: none;
+  z-index: 3;
+  color: #000;
+  font: 16px/48px Galaxie;
+  width: auto;
+}
+
+/*Display the dropdown on click*/
+li ul.selected {
+  display: block;
+}
+
+/*Hover state for dropdown links*/
+li:hover ul a:hover {
+  background: #eee;
+  color: #ec008c;
+}
+
+/*Display translucent mask over content, behind menu */
+div#translucent-mask {
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+/*Hide the element*/
+.hidden {
+  display: none;
+}
+
+
+.content {
+  min-height: 640px;
+  min-width: 100%;
+  background-color: white; /* Needs a background or else the nav will show through */
+  position: relative;
+  top: 0;
+  bottom: 100%;
+  left: 0;
+  z-index: 1;
+}
+
+.content h1 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  margin: 0;
+  font: 20vmin/1 HUGEAvantGardeBold;
+  letter-spacing: -0.06em;
+  text-align: center;
+}
+
+/* Styles for toggle hamburguer on mobile */
+.toggle {
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+
+}
+
+.toggle + label {
+  width: 24px;
+  height: 4px;
+  margin: 9px 0;
+  background: #fff;
+  -moz-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  cursor: pointer;
+
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  z-index: 3;
+}
+
+.toggle + label:before {
+  top: -8px;
+}
+
+.toggle + label:after {
+  top: 8px;
+}
+
+.toggle + label:after, .toggle + label:before {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 4px;
+  background: #fff;
+  position: absolute;
+  z-index: 3;
+  -moz-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+
+.toggle + label {
+  display: none;
+}
+
+.toggle:checked ~ .content {
+  /*content slide left to right.*/
+  left: 200px;
+}
+
+.toggle:checked ~ .content > #translucent-mask {
+    display: block;
+}
+
+.toggle + label, .content {
+    transition: left 0.2s;
+}
+
+.toggle:checked + label {
+  /*navigation toggle slide left to right.*/
+  left: 215px;
+
+  width: 24px;
+  height: 4px;
+  margin: 9px 0;
+  background: #ec008c;
+  -moz-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.toggle:checked + label:after, .toggle:checked + label:before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 4px;
+    background: #ec008c;
+    position: absolute;
+    z-index: 3;
+    -moz-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+.toggle:checked + label:before {
+  top: 0 !important;
+  background: #fff !important;
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+.toggle:checked + label:after {
+  top: 0 !important;
+  background: #fff !important;
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+/**/
+
+/*hide any overflow on the x-axis*/
+body {
+    overflow-x: hidden;
+}
+
+
+
+
+
+/*Responsive Styles*/
+
+@media screen and (max-width : 767px){
+  body > nav {
+    height: 60px;
+  }
+  /* mobile Off-Screen Navigation Menu */
+  ul {
+    top: 60px;
+    left: 0;
+    z-index: 0;
+    color: #000;
+    height: 100%;
+  }
+
+  /*Make dropdown links vertical*/
+  ul li {
+    display: block;
+    float: none;
+    position: relative;
+  }
+
+  /*Hover state for top level links*/
+  li:hover > a {
+    background: #eee;
+    color: #ec008c;
+  }
+
+  li ul {
+    top: 0px;
+  }
+
+  li ul.selected {
+    position: relative;
+  }
+
+  /*Display toggle hamburguer*/
+  .toggle + label {
+    display: block;
+  }
+
+  .content {
+    min-height: 500px;
+  }
+}
