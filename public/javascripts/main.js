@@ -15,7 +15,7 @@ function init(divId) {
 	    content[0].addEventListener("click", uncheckbox);
 
 	    var toggle = document.getElementById("toggle");
-	    toggle.addEventListener("change", slideContent);
+	    toggle.addEventListener("click", slideNav);
 	});
 }
 
@@ -101,20 +101,20 @@ function showSubitemsNav(event) {
 	this.nextSibling.className += " " + "selected";
 }
 
-// uncheck toggle checkbox (hamburguer) to hide mobile nav
+// uncheck toggle (hamburguer) to hide mobile nav
 function uncheckbox() {
 	var toggle = document.getElementById("toggle");
 	toggle.click();
 }
 
-// slide content according to toggle checkbox (hamburguer)
-function slideContent() {
+// slide nav according to toggle (hamburguer)
+function slideNav() {
 	console.log('slideContent');
-	var content = document.getElementsByClassName("content");
-	if (content[0].className.indexOf("slide") == -1) {
-		content[0].className += " " + "slide";
+	var nav = document.getElementsByClassName("bar");
+	if (nav[0].className.indexOf("slide") == -1) {
+		nav[0].className += " " + "slide";
 	} else {
-		content[0].className = content[0].className.replace("slide", "");
+		nav[0].className = nav[0].className.replace("slide", "");
 	} 
 }
 

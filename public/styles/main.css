@@ -165,14 +165,22 @@ div#translucent-mask {
 }
 
 /* Styles for toggle hamburguer on mobile */
-.toggle {
-  position: absolute;
-  clip: rect(0, 0, 0, 0);
-
-}
-
 /*create open navigation icon (“hamburger”)*/
-.toggle + label {
+.bar #toggle {
+  width: 24px;
+  height: 20px;
+  padding: 20px 24px;
+  z-index: 3;
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+  -moz-transition: all 0.3s cubic-bezier(0.7, 0.01, 0.3, 1);
+  -o-transition: all 0.3s cubic-bezier(0.7, 0.01, 0.3, 1);
+  -webkit-transition: all 0.3s cubic-bezier(0.7, 0.01, 0.3, 1);
+  transition: all 0.3s cubic-bezier(0.7, 0.01, 0.3, 1);
+}
+.bar label {
   width: 24px;
   height: 4px;
   margin: 28px 24px;
@@ -189,15 +197,15 @@ div#translucent-mask {
   z-index: 3;
 }
 
-.toggle + label:before {
+.bar label:before {
   top: -8px;
 }
 
-.toggle + label:after {
+.bar label:after {
   top: 8px;
 }
 
-.toggle + label:after, .toggle + label:before {
+.bar label:after, .bar label:before {
   content: '';
   display: block;
   width: 24px;
@@ -212,34 +220,37 @@ div#translucent-mask {
 }
 
 /*hide toggle on desktop*/
-.toggle + label {
+.bar label {
   display: none;
 }
 
-.toggle:checked ~ .logo {
-  display: block;
-}
-
-.toggle + label, .content {
+.bar label, .content {
   transition: left 0.2s;
 }
 
+/*show HUGE logo when slide menu is opened*/
+.bar.slide .logo {
+  display: block;
+}
+
+/*When slide nav menu is opened*/
+
 /*content slide left to right.*/
-.content.slide {
+.bar.slide ~ .content {
   left: 250px;
 }
 
 /*when toggle checked show translucent mask*/
-.content.slide > #translucent-mask {
+.bar.slide ~ .content > #translucent-mask {
     display: block;
 }
 
-
 /*change icon to close navigation icon (“x”)*/
-.toggle:checked + label {
+.bar.slide #toggle {
   /*navigation toggle slide left to right.*/
   left: 250px;
-
+}
+.bar.slide label {
   width: 24px;
   height: 4px;
   margin: 28px 24px;
@@ -250,7 +261,7 @@ div#translucent-mask {
   transition: all 0.3s;
 }
 
-.toggle:checked + label:after, .toggle:checked + label:before {
+.bar.slide label:after, .bar.slide label:before {
     content: '';
     display: block;
     width: 24px;
@@ -264,7 +275,7 @@ div#translucent-mask {
     transition: all 0.3s;
 }
 
-.toggle:checked + label:before {
+.bar.slide label:before {
   top: 0 !important;
   background: #fff !important;
   -moz-transform: rotate(-45deg);
@@ -273,7 +284,7 @@ div#translucent-mask {
   transform: rotate(-45deg);
 }
 
-.toggle:checked + label:after {
+.bar.slide label:after {
   top: 0 !important;
   background: #fff !important;
   -moz-transform: rotate(45deg);
@@ -283,6 +294,7 @@ div#translucent-mask {
 }
 /*finished creatino of close navigation icon (“x”)*/
 /**/
+
 
 /*hide any overflow on the x-axis*/
 body {
@@ -295,6 +307,25 @@ body {
 
 /*Responsive Styles*/
 
+/* >=768px: For Desktop*/
+@media screen and (min-width : 768px) {
+  /*when on desktop slide content back */
+  .bar.slide ~ .content {
+    left: 0;
+  }
+
+  /*when on desktop hide translucent mask */
+  /*.bar.slide ~ .content > #translucent-mask {
+    display: none;
+  }
+
+  .bar.slide (li ul.selected) ~ .content > #translucent-mask {
+    display: block;
+  }*/
+}
+
+
+/*<768px: For Mobile*/
 @media screen and (max-width : 767px){
   body > nav {
     height: 60px;
@@ -346,7 +377,7 @@ body {
   }
 
   /*Display toggle hamburguer*/
-  .toggle + label {
+  .bar label {
     display: block;
   }
 
