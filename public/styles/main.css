@@ -32,6 +32,26 @@ body > nav > div.header {
   float: left;
 }
 
+#logo {
+  height: 24px;
+  line-height: 24px;
+  padding: 24px 48px 24px 24px;
+  z-index: 3;
+  position: absolute;
+  -moz-transition: all 0.6s cubic-bezier(0.7, 0.01, 0.3, 1);
+  -o-transition: all 0.6s cubic-bezier(0.7, 0.01, 0.3, 1);
+  -webkit-transition: all 0.6s cubic-bezier(0.7, 0.01, 0.3, 1);
+  transition: all 0.6s cubic-bezier(0.7, 0.01, 0.3, 1);
+}
+
+#logo > img {
+  width: 60px;
+}
+
+div#navigation {
+  margin-left: 132px;
+}
+
 /*Strip the ul of padding and list styling*/
 ul {
   list-style-type: none;
@@ -151,10 +171,11 @@ div#translucent-mask {
 
 }
 
+/*create open navigation icon (“hamburger”)*/
 .toggle + label {
   width: 24px;
   height: 4px;
-  margin: 9px 0;
+  margin: 28px 24px;
   background: #fff;
   -moz-transition: all 0.3s;
   -o-transition: all 0.3s;
@@ -163,8 +184,8 @@ div#translucent-mask {
   cursor: pointer;
 
   position: absolute;
-  top: 15px;
-  left: 15px;
+  top: 0px;
+  left: 0px;
   z-index: 3;
 }
 
@@ -190,31 +211,38 @@ div#translucent-mask {
   transition: all 0.3s;
 }
 
-
+/*hide toggle on desktop*/
 .toggle + label {
   display: none;
 }
 
-.toggle:checked ~ .content {
-  /*content slide left to right.*/
-  left: 200px;
-}
-
-.toggle:checked ~ .content > #translucent-mask {
-    display: block;
+.toggle:checked ~ .logo {
+  display: block;
 }
 
 .toggle + label, .content {
-    transition: left 0.2s;
+  transition: left 0.2s;
 }
 
+/*content slide left to right.*/
+.content.slide {
+  left: 250px;
+}
+
+/*when toggle checked show translucent mask*/
+.content.slide > #translucent-mask {
+    display: block;
+}
+
+
+/*change icon to close navigation icon (“x”)*/
 .toggle:checked + label {
   /*navigation toggle slide left to right.*/
-  left: 215px;
+  left: 250px;
 
   width: 24px;
   height: 4px;
-  margin: 9px 0;
+  margin: 28px 24px;
   background: #ec008c;
   -moz-transition: all 0.3s;
   -o-transition: all 0.3s;
@@ -253,6 +281,7 @@ div#translucent-mask {
   -webkit-transform: rotate(45deg);
   transform: rotate(45deg);
 }
+/*finished creatino of close navigation icon (“x”)*/
 /**/
 
 /*hide any overflow on the x-axis*/
@@ -286,6 +315,18 @@ body {
     position: relative;
   }
 
+  ul li a {
+    height: 48px;
+    line-height: 48px;
+    padding: 0 24px;
+    background: #fff;
+  }
+
+  /*Padding top to the first navigation link*/
+  ul li:first-child a {
+    padding-top: 12px;
+  }
+
   /*Hover state for top level links*/
   li:hover > a {
     background: #eee;
@@ -300,12 +341,29 @@ body {
     position: relative;
   }
 
+  .content {
+    min-height: 500px;
+  }
+
   /*Display toggle hamburguer*/
   .toggle + label {
     display: block;
   }
 
-  .content {
-    min-height: 500px;
+  /*Hide HUGE logo*/
+  .logo {
+    display: none;
   }
+
+  /*HUGE logo style for mobile*/
+  #logo {
+    height: 20px;
+    line-height: 20px;
+    padding: 20px 24px;
+  }
+
+  #logo > img {
+    width: 50px;
+  }
+
 }

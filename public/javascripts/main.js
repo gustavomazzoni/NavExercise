@@ -13,6 +13,9 @@ function init(divId) {
 	    // on mobile hide navigation when clicked outside nav
 	    var content = document.getElementsByClassName("content");
 	    content[0].addEventListener("click", uncheckbox);
+
+	    var toggle = document.getElementById("toggle");
+	    toggle.addEventListener("change", slideContent);
 	});
 }
 
@@ -98,9 +101,20 @@ function showSubitemsNav(event) {
 	this.nextSibling.className += " " + "selected";
 }
 
+// uncheck toggle checkbox (hamburguer) to hide mobile nav
 function uncheckbox() {
-	// uncheck toggle checkbox to hide mobile nav
 	var toggle = document.getElementById("toggle");
-	toggle.checked = false;
+	toggle.click();
+}
+
+// slide content according to toggle checkbox (hamburguer)
+function slideContent() {
+	console.log('slideContent');
+	var content = document.getElementsByClassName("content");
+	if (content[0].className.indexOf("slide") == -1) {
+		content[0].className += " " + "slide";
+	} else {
+		content[0].className = content[0].className.replace("slide", "");
+	} 
 }
 
